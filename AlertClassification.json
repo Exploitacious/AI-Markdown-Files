@@ -1,6 +1,6 @@
 {
-  "version": 1.2,
-  "updated": "2026-03-25",
+  "version": 1.3,
+  "updated": "2026-03-26",
   "whitelist": {
     "exact": [
       {
@@ -115,6 +115,16 @@
         "source": "mailbox",
         "alert_type": "Malware Detected in your Message",
         "_comment": "External Email blocked for malware, no action needed from team"
+      },
+      {
+        "source": "mailbox",
+        "alert_type": "High-severity alert: Form blocked due to potential phishing attempt",
+        "_comment": "Microsoft auto-remediated phishing form block. Same logic as Malware Campaign Detected — action already taken, no engineer action needed. Added 2026-03-26 after this created 3 tickets for one incident (ID6952)."
+      },
+      {
+        "source": "mailbox",
+        "alert_type": "Microsoft 365 Defender has detected a security threat",
+        "_comment": "Generic Defender notification email. These duplicate the specific alert emails (e.g. phishing, malware) that are already blacklisted above. Two identical copies of ID6952 came through 30 sec apart on 2026-03-26. If Defender finds something truly novel, it will come through Blackpoint or CIPP, not this generic mailbox notification."
       }
     ],
     "contains": [
@@ -153,6 +163,31 @@
       {
         "field": "alert_type",
         "pattern": "informational"
+      },
+      {
+        "field": "message",
+        "pattern": "Firewall has blocked a port scan",
+        "_comment": "Bitdefender firewall port scan noise. FCOSM and Vicars Landing endpoints were generating 40+ of these per day on 2026-03-26, flooding Angela's dispatch queue."
+      },
+      {
+        "field": "message",
+        "pattern": "Firewall event for endpoint",
+        "_comment": "Catches Bitdefender firewall alert email subjects. Belt-and-suspenders with the port scan rule above in case the message field contains the subject line."
+      },
+      {
+        "field": "message",
+        "pattern": "Apple Volume Purchase Program Token",
+        "_comment": "Safety net for VPP Token Expiry alerts in case the exact alert_type match fails due to field extraction issues. These slipped through on 2026-03-26 for idenvironmental.com and umbrellaitgroup.com despite exact rule existing."
+      },
+      {
+        "field": "message",
+        "pattern": "Software licenses delivered for Order",
+        "_comment": "Vendor license delivery confirmations hitting the support mailbox. AI Triage was catching these but a classification rule is faster and deterministic."
+      },
+      {
+        "field": "message",
+        "pattern": "Received message from GDMS platform",
+        "_comment": "Grandstream device management platform noise. AI Triage was catching these."
       }
     ]
   }
