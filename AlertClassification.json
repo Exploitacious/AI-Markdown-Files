@@ -139,6 +139,10 @@
       },
       {
         "field": "message",
+        "pattern": "You can view, comment on, or merge this pull request"
+      },
+      {
+        "field": "message",
         "pattern": "has had all sessions revoked"
       },
       {
