@@ -139,6 +139,10 @@
       },
       {
         "field": "message",
+        "pattern": "has had all sessions revoked"
+      },
+      {
+        "field": "message",
         "pattern": "important DSM update with critical fixes is available"
       },
       {
