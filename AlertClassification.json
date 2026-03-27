@@ -119,7 +119,12 @@
       {
         "source": "mailbox",
         "alert_type": "High-severity alert: Form blocked due to potential phishing attempt",
-        "_comment": "Microsoft auto-remediated phishing form block. Same logic as Malware Campaign Detected — action already taken, no engineer action needed. Added 2026-03-26 after this created 3 tickets for one incident (ID6952)."
+        "_comment": "Microsoft auto-remediated phishing form block. Same logic as Malware Campaign Detected"
+      },
+      {
+        "source": "mailbox",
+        "alert_type": "New vulnerabilities notification from Microsoft Defender for Endpoint",
+        "_comment": "Microsoft notification of new vulnerabilities, no action needed from team"
       },
       {
         "source": "mailbox",
